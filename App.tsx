@@ -1,20 +1,27 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
     // jsx react native
+
+    const [name, setName] = useState<string>('Kieu');
+
+    const [count, setCount] = useState(0);
+
     return (
         // view tuong ung voi the div
         <View style={styles.container}>
+            <Text style={{ fontSize: 40, fontWeight: '600' }}>
+                Count = {count}
+            </Text>
+
             <View>
-                <Text style={styles.header}>Duong Van Kieu</Text>
-                <Text style={styles.parent}>
-                    Kieu ne
-                    <Text>bla bla</Text>
-                    {/* Text bla bla se duoc ke thua */}
-                </Text>
+                <Button
+                    color={'red'}
+                    title="Increase"
+                    onPress={() => setCount(count + 1)}
+                />
             </View>
-            <Text style={styles.hello1}>Kieu dep trai</Text>
-            <Text style={{ color: 'red' }}>Hello 2</Text>
         </View>
     );
 }
