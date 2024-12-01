@@ -2,10 +2,12 @@ import { useState } from 'react';
 import {
     Button,
     FlatList,
+    Pressable,
     ScrollView,
     StyleSheet,
     Text,
     TextInput,
+    TouchableOpacity,
     View,
 } from 'react-native';
 
@@ -24,9 +26,17 @@ export default function App() {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     const handleAddTodo = () => {
-        if (!todo) return;
+        if (!todo) {
+            alert('empty todo');
+            return;
+        }
         setListTodo([...listTodo, { id: randomInteger(2, 2000), name: todo }]);
         setTodo('');
+    };
+
+    const deleteTodo = (id: number) => {
+        const newTodo = listTodo.filter((item) => item.id !== id);
+        setListTodo(newTodo);
     };
     return (
         // view tuong ung voi the div
@@ -46,7 +56,15 @@ export default function App() {
                     keyExtractor={(item) => item.id + ''}
                     data={listTodo}
                     renderItem={({ item }) => {
-                        return <Text style={styles.todoItem}>{item.name}</Text>;
+                        return (
+                            <Pressable
+                                onPress={() => deleteTodo(item.id)}
+                                style={({ pressed }) => ({
+                                    opacity: pressed ? 0.5 : 1,
+                                })}>
+                                <Text style={styles.todoItem}>{item.name}</Text>
+                            </Pressable>
+                        );
                     }}
                 />
             </View>
