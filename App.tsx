@@ -13,6 +13,7 @@ import {
     TouchableWithoutFeedback,
     View,
 } from 'react-native';
+import FlexBox from './components/flex.box';
 
 interface ITodo {
     id: number;
@@ -51,39 +52,40 @@ export default function App() {
     return (
         // view tuong ung voi the div
 
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-            <View style={styles.container}>
-                <Text style={styles.header}>Todo App</Text>
+        // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        //     <View style={styles.container}>
+        //         <Text style={styles.header}>Todo App</Text>
 
-                <View style={styles.body}>
-                    <TextInput
-                        value={todo}
-                        style={styles.input}
-                        onChangeText={(value) => setTodo(value)}
-                    />
-                    <Button title="ADD to do" onPress={() => handleAddTodo()} />
-                </View>
-                <View style={styles.body}>
-                    <FlatList
-                        keyExtractor={(item) => item.id + ''}
-                        data={listTodo}
-                        renderItem={({ item }) => {
-                            return (
-                                <Pressable
-                                    onPress={() => deleteTodo(item.id)}
-                                    style={({ pressed }) => ({
-                                        opacity: pressed ? 0.5 : 1,
-                                    })}>
-                                    <Text style={styles.todoItem}>
-                                        {item.name}
-                                    </Text>
-                                </Pressable>
-                            );
-                        }}
-                    />
-                </View>
-            </View>
-        </TouchableWithoutFeedback>
+        //         <View style={styles.body}>
+        //             <TextInput
+        //                 value={todo}
+        //                 style={styles.input}
+        //                 onChangeText={(value) => setTodo(value)}
+        //             />
+        //             <Button title="ADD to do" onPress={() => handleAddTodo()} />
+        //         </View>
+        //         <View style={styles.body}>
+        //             <FlatList
+        //                 keyExtractor={(item) => item.id + ''}
+        //                 data={listTodo}
+        //                 renderItem={({ item }) => {
+        //                     return (
+        //                         <Pressable
+        //                             onPress={() => deleteTodo(item.id)}
+        //                             style={({ pressed }) => ({
+        //                                 opacity: pressed ? 0.5 : 1,
+        //                             })}>
+        //                             <Text style={styles.todoItem}>
+        //                                 {item.name}
+        //                             </Text>
+        //                         </Pressable>
+        //                     );
+        //                 }}
+        //             />
+        //         </View>
+        //     </View>
+        // </TouchableWithoutFeedback>
+        <FlexBox />
     );
 }
 
