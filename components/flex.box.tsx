@@ -6,11 +6,12 @@ const styles = StyleSheet.create({
         flex: 1,
         borderWidth: 1,
         borderColor: 'red',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     item1: {
         backgroundColor: 'violet',
         padding: 20,
-        flex: 1,
     },
     item2: {
         backgroundColor: 'orange',

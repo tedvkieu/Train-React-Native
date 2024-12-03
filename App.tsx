@@ -14,6 +14,7 @@ import {
     View,
 } from 'react-native';
 import FlexBox from './components/flex.box';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 interface ITodo {
     id: number;
@@ -52,51 +53,88 @@ export default function App() {
     return (
         // view tuong ung voi the div
 
-        // <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        //     <View style={styles.container}>
-        //         <Text style={styles.header}>Todo App</Text>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            <View style={styles.container}>
+                <Text style={styles.header}>Todo App</Text>
 
-        //         <View style={styles.body}>
-        //             <TextInput
-        //                 value={todo}
-        //                 style={styles.input}
-        //                 onChangeText={(value) => setTodo(value)}
-        //             />
-        //             <Button title="ADD to do" onPress={() => handleAddTodo()} />
-        //         </View>
-        //         <View style={styles.body}>
-        //             <FlatList
-        //                 keyExtractor={(item) => item.id + ''}
-        //                 data={listTodo}
-        //                 renderItem={({ item }) => {
-        //                     return (
-        //                         <Pressable
-        //                             onPress={() => deleteTodo(item.id)}
-        //                             style={({ pressed }) => ({
-        //                                 opacity: pressed ? 0.5 : 1,
-        //                             })}>
-        //                             <Text style={styles.todoItem}>
-        //                                 {item.name}
-        //                             </Text>
-        //                         </Pressable>
-        //                     );
-        //                 }}
-        //             />
-        //         </View>
-        //     </View>
-        // </TouchableWithoutFeedback>
-        <FlexBox />
+                <View style={styles.form}>
+                    <TextInput
+                        value={todo}
+                        style={styles.input}
+                        onChangeText={(value) => setTodo(value)}
+                    />
+                    <Button title="ADD to do" onPress={() => handleAddTodo()} />
+                </View>
+                <View style={styles.todo}>
+                    <FlatList
+                        keyExtractor={(item) => item.id + ''}
+                        data={listTodo}
+                        renderItem={({ item }) => {
+                            return (
+                                <Pressable
+                                    onPress={() => deleteTodo(item.id)}
+                                    style={({ pressed }) => ({
+                                        opacity: pressed ? 0.5 : 1,
+                                    })}>
+                                    <View style={styles.groupTodo}>
+                                        <Text style={styles.todoItem}>
+                                            {item.name}
+                                        </Text>
+                                        <AntDesign
+                                            name="close"
+                                            size={24}
+                                            color="black"
+                                        />
+                                    </View>
+                                </Pressable>
+                            );
+                        }}
+                    />
+                </View>
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 
 //ko co css, stylesheet giong css
 const styles = StyleSheet.create({
+    groupTodo: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderStyle: 'dashed',
+        marginBottom: 15,
+        justifyContent: 'space-between',
+        padding: 15,
+        marginHorizontal: 10,
+    },
+    container: {
+        paddingTop: 50,
+        borderWidth: 1,
+        borderColor: 'red',
+        flex: 1,
+        backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
     header: {
         backgroundColor: 'orange',
         paddingHorizontal: 20,
         textAlign: 'center',
         fontSize: 50,
     },
+    form: {
+        marginBottom: 20,
+    },
+    todo: {
+        flex: 9,
+    },
+    todoItem: {
+        fontSize: 20,
+
+        //marginBottom: 20,
+    },
+
     input: {
         borderBottomWidth: 1,
         borderColor: 'green',
@@ -104,21 +142,9 @@ const styles = StyleSheet.create({
         marginHorizontal: 15,
         margin: 15,
     },
-    container: {
-        paddingTop: 50,
-        flex: 1,
-        backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
-    },
-    todoItem: {
-        fontSize: 20,
-        borderWidth: 1,
-        borderStyle: 'dashed',
-        marginBottom: 20,
-        padding: 10,
-    },
+
     body: {
+        flex: 1,
         paddingHorizontal: 10,
         marginBottom: 20,
     },
