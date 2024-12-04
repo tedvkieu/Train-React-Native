@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 const HomeScreen = () => {
     return (
         <View>
-            <Text>Hihidsjafkads </Text>
+            <Text>Hihijsdfn SObeautiofyul </Text>
         </View>
     );
 };
