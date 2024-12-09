@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { OPENSANS_REGULAR } from './utils/const';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 SplashScreen.preventAutoHideAsync(); // chờ cho giao diện load font chữ. Sau đó mới chạy vào ứng dụng
 
@@ -18,12 +20,22 @@ const App = () => {
             SplashScreen.hideAsync();
         }
     });
+    const Stack = createNativeStackNavigator();
     return (
-        <View style={{ marginTop: 50 }}>
-            <HomeScreen />
-            <DetailScreen />
-            <AboutScreen />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator>
+                <Stack.Screen
+                    name="home"
+                    options={{ title: 'Overview' }}
+                    component={HomeScreen}
+                />
+                <Stack.Screen
+                    name="review-detail"
+                    options={{ title: 'Detail Page' }}
+                    component={HomeScreen}
+                />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 };
 
