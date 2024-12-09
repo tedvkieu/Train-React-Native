@@ -20,7 +20,7 @@ const App = () => {
             SplashScreen.hideAsync();
         }
     });
-    const Stack = createNativeStackNavigator();
+    const Stack = createNativeStackNavigator<RooteStackParamList>();
     return (
         <NavigationContainer>
             <Stack.Navigator>
@@ -32,7 +32,7 @@ const App = () => {
                 <Stack.Screen
                     name="review-detail"
                     options={{ title: 'Detail Page' }}
-                    component={HomeScreen}
+                    component={DetailScreen}
                 />
             </Stack.Navigator>
         </NavigationContainer>
